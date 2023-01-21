@@ -141,3 +141,4 @@ https://matthewdbill.medium.com/back-of-envelope-calculations-cheat-sheet-d6758d
 https://youtu.be/-frNQkRz_IU  
 http://preservationtutorial.library.cornell.edu/intro/intro-06.html#:~:text=If%20the%20pixel%20dimensions%20are,)%2F8%2C%20or%2018%2C874%2C368%20bytes.  
 https://bytebytego.com/courses/system-design-interview/back-of-the-envelope-estimation
+https://youtu.be/ohtqI3AHR0k
