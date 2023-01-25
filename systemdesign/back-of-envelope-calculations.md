@@ -42,9 +42,9 @@
 |Read 1 MB sequentially from memory            | 250 µs|
 |Round trip within the same datacenter         | 500 µs|
 |Disk seek                                     | 10 ms |
-|Read 1 MB sequentially from the network       | 10 ms |
+|Read 1 MB sequentially from network (1GBPS)   | 10 ms |
 |Read 1 MB sequentially from disk              | 30 ms |
-|Send packet CA (California) ->Netherlands->CA | 150 ms|
+|Send packet CA (California)->Netherlands->CA  | 150 ms|
 
 ### Availability numbers
 
@@ -69,8 +69,8 @@
 We are provided below infrastructure to develop a photo management service
 * Network SLA is 99.99%
 * Storage SLA for read is 100 ms at 95 pctl and for write is 200 ms at 95 pctl.
-* Any number of HDD servers with 8 cores, 24GB RAM, 2X2TB HD, 10GB ethernet.
-* Any number of SSD servers with 8 cores, 24GB RAM, 2TB SSD, 10GB ethernet.
+* Any number of HDD servers with 8 cores, 24GB RAM, 2X2TB HD, 1GB ethernet.
+* Any number of SSD servers with 8 cores, 24GB RAM, 2TB SSD, 1GB ethernet.
 * NIC capacity - 1000 MB/s
 #### Estimations
 * 1M daily users with 50 uploads, 5 searches and one download per search. 
@@ -81,28 +81,31 @@ We are provided below infrastructure to develop a photo management service
 * Download volume = 1M*5 per day ~ 60 qps
 #### Upload service
 * Bandwidth
-    * Incoming picture data = 600 qps * 5MB = 3000mbps => 3 NICs
-    * Theoritical max per NIC = 1000mbps / 5MB = 250 qps
+    * Incoming picture data = 600 qps * 5MB = 3000MBps => 3 NICs
+    * Theoritical max per NIC = 1000MBps / 5MB = 200 qps
 * Timing
     * Storage write ~ 200ms and is non blocking.
-    * Assuming 8ms blocking network time per picture on NIC => 125 qps max per NIC => 600 qps /125 qps ~ 5 NICS
+    * Blocking network time = 2 (in and out) * 5MB / 1000MBps = 10ms 
+    * Assuming index search call ~ 1ms
+    * Max rate of picture upload on each NIC = 1000MBps/11ms or 91 qps => 600 qps /91 qps or 7 NICS would be required.
 
 #### Thumbnail service
 * Bandwidth
     * 60 qps with 10 results per search of 256KB each => 150 mbps
 * Timing
     * Storage read ~ 100 ms and is non blocking.
-    * Assuming blocking Network time per result page ~ 2.5 ms => max 400 qps per NIC so one NIC is fine.
+    * Blocking network time = 10 * 256KB / 1000MBps ~ 2.5ms 
+    * Assuming index search query ~ 1ms
+    * Max result page load rate on each NIC = max 1000MBps/3.5ms or 286 qps so one NIC should be sufficient to handle 60 qps.
 
 #### Download service
 * Bandwidth
     * Download picture data = 60 qps * 5MB = 300mbps => one NIC
 * Timing
     * Storage read ~ 100 ms and is non blocking.
-    * Assuming blocking network time per download ~ 4 ms => 250 qps per NIC.
-    * Assuming index search query ~ 1ms
-    * Wait time per query = 105 ms which is less than our SLO.
-    * One NIC is sufficient.
+    * Blocking network time = 2 (in and out) * 5MB / 1000MBps = 10ms
+    * Wait time per query = 110 ms which is less than our SLO.
+    * Max rate of picture download per NIC = 1000MBps/10ms ~ 90 qps so one NIC should be sufficient.
 
 #### Index service
 * Bandwidth
