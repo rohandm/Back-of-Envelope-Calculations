@@ -30,21 +30,22 @@
 
 ### Latency numbers
 
-|Operation name	                               | Time  |
-| -------------------------------------------- | ----- |
-|L1 cache reference	                           | 0.5 ns|
-|Branch mispredict	                           | 5 ns  |
-|L2 cache reference	                           | 7 ns  |
-|Mutex lock/unlock	                           | 100 ns|
-|Main memory reference	                       | 100 ns|
-|Compress 1K bytes with Zippy                  | 10 µs |
-|Send 2K bytes over 1 Gbps network             | 20 µs |
-|Read 1 MB sequentially from memory            | 250 µs|
-|Round trip within the same datacenter         | 500 µs|
-|Disk seek                                     | 10 ms |
-|Read 1 MB sequentially from network (1GBPS)   | 10 ms |
-|Read 1 MB sequentially from disk              | 30 ms |
-|Send packet CA (California)->Netherlands->CA  | 150 ms|
+|Operation name	                              | Time  | Compare |
+| --------------------------------------------- | ----- | ------- |
+|L1 cache reference	                           | 0.5 ns|         |
+|Branch mispredict	                           | 5 ns  |         |
+|L2 cache reference	                           | 7 ns  | 14X L1  |
+|Mutex lock/unlock	                           | 100 ns|         |
+|Main memory reference	                        | 100 ns|         |
+|Compress 1K bytes with Zippy                   | 10 µs |         |
+|Send 2K bytes over 1 Gbps network              | 20 µs |         |
+|Read 1 MB sequentially from memory             | 250 µs|         |
+|Round trip within the same datacenter          | 500 µs|         |
+|Read 1 MB sequentially from SSD                | 1 ms  | 4X mem  |
+|Disk seek                                      | 10 ms |         |
+|Read 1 MB sequentially from network (1GBPS)    | 10 ms |         |
+|Read 1 MB sequentially from disk               | 30 ms | 120X mem|
+|Send packet CA (California)->Netherlands->CA   | 150 ms|         |
 
 ### Availability numbers
 
@@ -55,11 +56,13 @@
 | 99.99%       | 52.56 minutes                | 8.76 hours                  | 
 | 99.999%      | 31.56 seconds                | 52.56 minutes               |
 
-### Cost of Operations
+### Cost of Operations per second
 * Read sequentially from HDD: 30 MB/s
+* Read sequentially from 1Gbps Ethernet: 100MB/s
 * Read sequentially from SSD: 1 GB/s
 * Read sequentially from memory: 4 GB/s
-* Read sequentially from 1Gbps Ethernet: 100MB/s
+* 6-7 world-wide round trips per second
+* 2,000 round trips per second within a data center
 
 
 ### Bill of Materials calculations
