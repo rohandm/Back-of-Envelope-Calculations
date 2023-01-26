@@ -38,7 +38,8 @@
 |Mutex lock/unlock	                           | 100 ns|         |
 |Main memory reference	                        | 100 ns|         |
 |Compress 1K bytes with Zippy                   | 10 µs |         |
-|Send 2K bytes over 1 Gbps network              | 20 µs |         |
+|Send 1K bytes over 1 Gbps network              | 10 µs |         |
+|Read 4 KB randomly from SSD                    | 150 µs|         |
 |Read 1 MB sequentially from memory             | 250 µs|         |
 |Round trip within the same datacenter          | 500 µs|         |
 |Read 1 MB sequentially from SSD                | 1 ms  | 4X mem  |
