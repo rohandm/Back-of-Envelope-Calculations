@@ -66,7 +66,8 @@
 * 2,000 round trips per second within a data center
 
 
-### Bill of Materials calculations
+## Bill of Materials calculations
+### Photo application
 #### SLO
 * Full HD image 200ms 99.9 pctl
 #### Available infrastructure
