@@ -69,7 +69,7 @@
 ## Bill of Materials calculations
 ### Photo application
 #### SLO
-* Full HD image 200ms 99.9 pctl
+* Download Full HD image should take at most 200ms 99.9 pctl of the time.
 #### Available infrastructure
 We are provided below infrastructure to develop a photo management service
 * Network SLA is 99.99%
@@ -79,11 +79,11 @@ We are provided below infrastructure to develop a photo management service
 * NIC capacity - 1000 MB/s
 #### Estimations
 * 1M daily users with 50 uploads, 5 searches and one download per search. 
-* Write volume = 1M*50 per day ~ 600 qps
-* Daily storage = 1M*50*5MB ~ 250TB
+* Write volume = 1M * 50 per day ~ 600 qps
+* Daily storage = 1M * 50 * 5MB ~ 250TB
 * Monthly storage = 7.5PB
-* Thumbnail search volume = 1M*5 per day ~ 60 qps
-* Download volume = 1M*5 per day ~ 60 qps
+* Thumbnail search volume = 1M * 5 per day ~ 60 qps
+* Download volume = 1M * 5 per day ~ 60 qps
 #### Upload service
 * Bandwidth
     * Incoming picture data = 600 qps * 5MB = 3000MBps => 3 NICs
