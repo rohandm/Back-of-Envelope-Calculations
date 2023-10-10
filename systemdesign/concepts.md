@@ -68,3 +68,17 @@
 * Node generates correct results but might be late due to be useful due to un-synchronized clocks or bad algorithms.
 ### Byzantine failures
 * Random node behaviour.
+
+## Availability
+* Percentage of time the service is accessible and respond normally to clients.
+* Availability = (<Total_time> - <Total_time_when_service_is_down>)/<Total_time>
+* Availabilty percentages are normally measured as nines (eg. 99% available)
+
+| Number of nines | Availability% | Downtime per year | Downtime per month | Downtime per week |
+|-----------------|---------------|-------------------|--------------------|------------------|
+| 1 | 90% | 36.5 days | 72 hours | 16.8 hours |
+| 2 | 99% | 3.65 days | 7.2 hours | 1.68 hours |
+| 3 | 99.9% | 8.76 hours | 43.8 min | 10.1 min |
+| 4 | 99.99% | 52.56 min | 4.32 min | 1.01 min |
+| 5 | 99.999% | 5.26 min | 25.9 sec | 6.05 sec |
+| 6 | 99.9999% | 31.5 sec | 2.59 sec | 0.6 sec |
