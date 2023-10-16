@@ -52,7 +52,36 @@
       - Task queues
       - Back pressure
     - Communication
-      - TCP, UDP, REST, RPC, Long polling, Websockets, Server sent events, 
+      - TCP, UDP, REST, RPC, Long polling, Websockets, Server sent events,
+- Golden rules
+  - Read-heavy system - Cache
+  - Low latency - Cache, CDN
+  - Write-heavy system - Message Queue or Append only logs
+  - ACID compliance - RDBMS
+  - Non ACID - NoSQL
+  - Store videos, images, files - Object/Blob storage
+  - Complex/heavy pre-computation like News feed - Message Queue & Cache
+  - Search data - Search index, Tries or Search engine
+  - Scale RDMS - Sharding and Partitioning
+  - High availability, performance and throughput - Load balancer
+  - Global reach, reliability. High availability, low latency - CDN
+  - Data with nodes, edges and relationships (social network) - Graph DB
+  - Improve database performance - Indexes
+  - Bulk job processing - Batch processing and Message queues
+  - Prevent DDOS attacks and reduce server load - Rate limiter
+  - Microservices - API Gateway (Authentication, SSL termination, Routing)
+  - SPOC - Add redudancy
+  - Fault tolerance and durable - Data replication
+  - Bi-directional communication - Websockets
+  - Detect failures - Heartbeat
+  - Data integity - Checksum algorithm
+  - Add/Remove nodes efficiently with no hotspots - Consistent hashing with virtual nodes
+  - Transfer data between servers in decentralized way - Gossip protocol
+  - Location data - Quadtree or Geohash
+  - High availability and Strict consistency cannot go hand in hand
+  - Use Pagination and Gzip to limit response size
+  - Preferred LRU eviction policy for Cache
+ 
 ## Justify
   - Throughput of each layer
   - Latency caused between each layer
